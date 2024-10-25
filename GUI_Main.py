@@ -2,6 +2,8 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+from tkinter.ttk import Progressbar
+import os
 
 # Functions
 
@@ -33,10 +35,12 @@ Main = tk.Tk()
 Main.geometry("500x500")
 Main.grid_columnconfigure(0, weight=1)  # Configure main window's single column to expand
 Main.grid_rowconfigure(0, weight=1)     # Configure main window's single row to expand
+#Main.resizable(False, False)
 
 # --- Frames ---
-login_frame = tk.Frame(Main, bg='#1C191C')
+login_frame = tk.Frame(Main, bg='Black')
 main_Frame = tk.Frame(Main, bg="Black")
+cred_frame = tk.Frame(login_frame, bg='#1C191C')
 
 # Place both frames on top of each other
 for frame in (login_frame, main_Frame):
@@ -44,17 +48,18 @@ for frame in (login_frame, main_Frame):
 
 # --- Login Frame ---
 login_frame.grid_columnconfigure(0, weight=1)  # Make widgets centered
-login_label = tk.Label(login_frame, text="Login Page", font=('Helvetica', 18), bg='lightblue')
+cred_frame.grid(row=0, column=0, pady= 20)
+login_label = tk.Label(cred_frame, text="Login Page", font=('Helvetica', 18), bg='#1C191C', fg= "#844A84")
 login_label.grid(row=0, column=0, pady=20)
 
 # Username entry
-username_label = tk.Label(login_frame, text="Username:", bg='lightblue')
+username_label = tk.Label(login_frame, text="Username:", bg='lightblue', fg="#5B135B")
 username_label.grid(row=1, column=0, pady=5)
 username_entry = tk.Entry(login_frame)
 username_entry.grid(row=2, column=0, pady=5)
 
 # Password entry
-password_label = tk.Label(login_frame, text="Password:", bg='lightblue')
+password_label = tk.Label(login_frame, text="Password:", bg='lightblue', fg="#5B135B")
 password_label.grid(row=3, column=0, pady=5)
 password_entry = tk.Entry(login_frame, show="*")  # Hide password input
 password_entry.grid(row=4, column=0, pady=5)
