@@ -30,10 +30,20 @@ user_entry.pack(fill='x', padx=20, pady=(0, 10))
 user_label1 = ctk.CTkLabel(frame, text="PASSWORD:", text_color="#844A84", font=ctk.CTkFont(family="Inter", size=18, weight="normal"))
 user_label1.pack(anchor='w', padx=20, pady=(10, 5))
 
-user_entry1 = ctk.CTkEntry(frame, fg_color="#2C2A2C", text_color="white", placeholder_text="Enter password")
+user_entry1 = ctk.CTkEntry(frame, fg_color="#2C2A2C", text_color="white", placeholder_text="Enter password", show = ':')
 user_entry1.pack(fill='x', padx=20, pady=(0, 10))
 
-
+# Button to enter
+button = ctk.CTkButton(
+    frame,
+    text="LESSGOOO..", # Function to call on click
+    fg_color="#844A84",           # Button background color
+    text_color="#1C191C",           # Button text color
+    hover_color="#616f7d"   ,      # Color when hovered over
+    width=513, height=25
+)
+button.pack(anchor='s', side= ctk.BOTTOM)
 # Start the main event loop
 root.mainloop()
+
 
