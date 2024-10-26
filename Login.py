@@ -41,7 +41,7 @@ button = ctk.CTkButton(
     fg_color="#844A84",           # Button background color
     text_color="#1C191C",           # Button text color
     hover_color="#616f7d"   ,      # Color when hovered over
-    width=513, height=25, command= main(root)
+    width=513, height=25, command= main(Login)
 )
 button.pack(anchor='s', side= ctk.BOTTOM)
 # Start the main event loop
