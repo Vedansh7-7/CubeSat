@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from Main import main
+from GUI_CubeSat.Main import main
 
 # Set the theme and appearance mode for customtkinter
 ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
