@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from Main import main
 
 # Set the theme and appearance mode for customtkinter
 ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
@@ -36,14 +37,16 @@ user_entry1.pack(fill='x', padx=20, pady=(0, 10))
 # Button to enter
 button = ctk.CTkButton(
     frame,
-    text="LESSGOOO..", # Function to call on click
+    text="VERIFY", # Function to call on click
     fg_color="#844A84",           # Button background color
     text_color="#1C191C",           # Button text color
     hover_color="#616f7d"   ,      # Color when hovered over
-    width=513, height=25
+    width=513, height=25, command= main(root)
 )
 button.pack(anchor='s', side= ctk.BOTTOM)
 # Start the main event loop
 Login.mainloop()
+
+
 
 
