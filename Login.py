@@ -5,13 +5,13 @@ ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
 ctk.set_default_color_theme("dark-blue")  # Default color theme
 
 # Initialize main application window
-root = ctk.CTk()
-root.title("Login Window")
-root.geometry("900x600") 
-root.configure(fg_color="#000000")
+Login = ctk.CTk()
+Login.title("Login Window")
+Login.geometry("900x600") 
+Login.configure(fg_color="#000000")
 
 # Create a frame to hold the login components
-frame = ctk.CTkFrame(root, fg_color="#1C191C", width=513, height=270, corner_radius= 12)
+frame = ctk.CTkFrame(Login, fg_color="#1C191C", width=513, height=270, corner_radius= 12)
 frame.pack(padx=10, pady=10)
 frame.pack_propagate(False)
 frame.place(relx=0.5, rely=0.5, anchor='center')
@@ -44,6 +44,6 @@ button = ctk.CTkButton(
 )
 button.pack(anchor='s', side= ctk.BOTTOM)
 # Start the main event loop
-root.mainloop()
+Login.mainloop()
 
 
