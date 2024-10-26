@@ -1,9 +1,22 @@
 import customtkinter as ctk
-from GUI_CubeSat.Main import main
+from Main import main
+from tkinter import messagebox
 
 # Set the theme and appearance mode for customtkinter
 ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
 ctk.set_default_color_theme("dark-blue")  # Default color theme
+
+# Functions
+def login():
+    username = user_entry.get()
+    password = user_entry1.get()
+
+    # Simple hardcoded credentials for demonstration
+    if username == "admin" and password == "password123":
+        messagebox.showinfo("Login", "Login Successful!")
+        main(Login= Login)
+    else:
+        messagebox.showerror("Login", "Invalid Username or Password")
 
 # Initialize main application window
 Login = ctk.CTk()
@@ -41,7 +54,7 @@ button = ctk.CTkButton(
     fg_color="#844A84",           # Button background color
     text_color="#1C191C",           # Button text color
     hover_color="#616f7d"   ,      # Color when hovered over
-    width=513, height=25, command= main()
+    width=513, height=25, command= login
 )
 button.pack(anchor='s', side= ctk.BOTTOM)
 # Start the main event loop
