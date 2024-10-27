@@ -3,7 +3,7 @@ from Main import main
 from tkinter import messagebox
 
 # Set the theme and appearance mode for customtkinter
-ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
+ctk.set_appearance_mode("light")  # Options: "dark", "light", or "system"
 ctk.set_default_color_theme("dark-blue")  # Default color theme
 
 # Functions
@@ -12,7 +12,7 @@ def login():
     password = user_entry1.get()
 
     # Simple hardcoded credentials for demonstration
-    if username == "admin" and password == "password123":
+    if username == "a" and password == "a":
         messagebox.showinfo("Login", "Login Successful!")
         main(Login= Login)
     else:
