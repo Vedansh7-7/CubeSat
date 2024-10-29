@@ -3,7 +3,7 @@ from Main import main
 from tkinter import messagebox
 
 # Set the theme and appearance mode for customtkinter
-ctk.set_appearance_mode("light")  # Options: "dark", "light", or "system"
+ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
 ctk.set_default_color_theme("dark-blue")  # Default color theme
 
 # Functions
@@ -25,7 +25,7 @@ Login.geometry("900x600")
 Login.configure(fg_color="#000000")
 
 # Create a frame to hold the login components
-frame = ctk.CTkFrame(Login, fg_color="#1C191C", width=513, height=270, corner_radius= 12)
+frame = ctk.CTkFrame(Login, fg_color="#1E1E1E", width=513, height=270, corner_radius= 12)
 frame.pack(padx=10, pady=10)
 frame.pack_propagate(False)
 frame.place(relx=0.5, rely=0.5, anchor='center')
