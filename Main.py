@@ -11,14 +11,28 @@ def main(Login):
     root = ctk.CTk()
     root.title("Main page")
     root.geometry("900x600") 
+# Define frame visibility states
+    frame_states = {
+        "frame1": True,
+        "frame2": False,
+        "frame3": False,
+        "frame4": False,
+        "frame5": False,
+        "frame6": False,
+        "frame7": False
+    }
 
-    iframe = ctk.CTkFrame(root,  width=52, height=400)
-    iframe.pack(padx=15, pady=15)
+        
+    default_button_color = "transparent" # Default button colors
+    selected_button_color = "#844A84"  # Color for the selected button
+
+    iframe = ctk.CTkFrame(root,  width=55, height=395)
+    iframe.pack(padx=10, pady=10)
     iframe.pack_propagate(False)
     iframe.pack(side="left", fill="y")
 
-    mframe = ctk.CTkFrame(root,  width=848, height=400)
-    mframe.pack( pady=15, padx=15)
+    mframe = ctk.CTkFrame(root,  width=848, height=395)
+    mframe.pack( pady=10, padx=10)
     mframe.pack_propagate(False)
     mframe.pack(fill='both',expand= True)
 
@@ -29,55 +43,104 @@ def main(Login):
     dtab = tabview.add("Data Sheet")
     tabview.set("OVERVIEW")
     
+    # #Function to switch between frames
+    # def show_frame(frame):
+    #     frame.tkraise()
+# Function to toggle frame visibility
+    def toggle_frame(frame, frame_name,clicked_button):
+        if frame_states[frame_name]:  # If the frame is visible, hide it
+            frame.place_forget()
+            frame_states[frame_name] = False
+        else:  # If the frame is hidden, show it
+            for f in all_frames:  # Hide all frames before showing the selected one
+                f.place_forget()
+            frame.place(x=0, y=0, relwidth=1, relheight=1)
+            frame_states[frame_name] = True
+
+ # Reset all button colors to default
+        for button in all_buttons:
+            button.configure(fg_color=default_button_color)
+
+        # Change the clicked button color
+        clicked_button.configure(fg_color=selected_button_color)
+
+    # Create different frames for each button in mframe
+    frame1 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
+    frame2 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="blue")
+    frame3 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
+    frame4 = ctk.CTkFrame(mframe, width=848, height=395)
+    frame5 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
+    frame6 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="green")
+    frame7 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="green")
+
+    all_frames = [frame1, frame2, frame3, frame4, frame5, frame6, frame7]  # List of all frames
+
+    # Add content to each frame
+    label1 = ctk.CTkLabel(frame1, text="Frame 1", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
+    label1.pack(pady=20)
+
+    label2 = ctk.CTkLabel(frame2, text="Frame 2", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
+    label2.pack(pady=20)
+
+    label3 = ctk.CTkLabel(frame3, text="Frame 3", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
+    label3.pack(pady=20)
+
+    label4 = ctk.CTkLabel(frame4, text="Frame 4", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
+    label4.pack(pady=20)
+
+    label5 = ctk.CTkLabel(frame5, text="Frame 5", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
+    label5.pack(pady=20)
+
+    label6 = ctk.CTkLabel(frame6, text="Frame 6", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
+    label6.pack(pady=20)
+
+    label7 = ctk.CTkLabel(frame7, text="Frame 7", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
+    label7.pack(pady=20)
+
+
+
+
     #BUTTONS
+
     #button1
-    icon_image1= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\speedometer.png"), size=(40, 40))
+    icon_image1= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\home.png"), size=(40, 40))
 
     # Create a button with an icon
-    button1 = ctk.CTkButton(iframe, text="Accelerometer",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image1, compound="top",fg_color="transparent")
-    button1.pack(pady=15)
+    button1 = ctk.CTkButton(iframe, text="Home",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image1, compound="top",fg_color=default_button_color, command=lambda: toggle_frame(frame1, "frame1",button1))
+    button1.pack(pady=6)
 
     #button2
-
     icon_image2= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\compass.png"), size=(40, 40))
+    button2 = ctk.CTkButton(iframe, text="Magnetometer",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image2, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame2, "frame1",button2))
+    button2.pack(pady=6)
 
-    button2 = ctk.CTkButton(iframe, text="Magnetometer",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image2, compound="top",fg_color="transparent")
-    button2.pack(pady=15)
     #button3
-
     icon_image3= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\humidity.png"), size=(40, 40))
+    button3 = ctk.CTkButton(iframe, text="BMP-180",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image3, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame3, "frame1",button3))
+    button3.pack(pady=6)
 
-
-
-        # Create a button with an icon
-    button3 = ctk.CTkButton(iframe, text="BMP-180",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image3, compound="top",fg_color="transparent")
-    button3.pack(pady=15)
     #button4
     icon_image4= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\placeholder.png"), size=(40, 40))
+    button4 = ctk.CTkButton(iframe, text="GPS module",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image4, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame4, "frame1",button4))
+    button4.pack(pady=6)
 
-
-
-        # Create a button with an icon
-    button4 = ctk.CTkButton(iframe, text="GPS module",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image4, compound="top",fg_color="transparent")
-    button4.pack(pady=15)
     #button5
     icon_image5= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\humidity (1).png"), size=(40, 40))
+    button5 = ctk.CTkButton(iframe, text="DHT-11",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image5, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame5, "frame1",button5))
+    button5.pack(pady=6)
 
-#fg_color=("#DB3E39", "#821D1A")
-
-        # Create a button with an icon
-    button5 = ctk.CTkButton(iframe, text="DHT-11",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image5, compound="top",fg_color="transparent")
-    button5.pack(pady=15)
     #button6
     icon_image6= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\3d.png"), size=(40, 40))
-
-
-
-        # Create a button with an icon
-    button6 = ctk.CTkButton(iframe, text="3D view",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image6, compound="top",fg_color="transparent")
-    button6.pack(pady=15)
+    button6 = ctk.CTkButton(iframe, text="3D view",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image6, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame6, "frame1",button6))
+    button6.pack(pady=6)
+    
  
+    icon_image7= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\speedometer.png"), size=(40, 40))
+    button7 = ctk.CTkButton(iframe, text="Accelerometer",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image7, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame7, "frame1", button7))
+    button7.pack(pady=6)
 
-
+    all_buttons = [button1, button2, button3, button4, button5, button6, button7]
+    frame1.place(x=0, y=0, relwidth=1, relheight=1)
     root.mainloop()
 
+#adding frames in otab(overview)
