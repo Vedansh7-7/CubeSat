@@ -1,8 +1,10 @@
 import tkinter as tk
 import serial
+import serial.tools.list_ports
 import threading
 import csv
 import math
+import os
 
 class SerialReader:
     def __init__(self, port, baudrate, file_path):
@@ -16,12 +18,12 @@ class SerialReader:
                 line = self.serial.readline().decode('utf-8').strip()
                 self.save_to_csv(line)
                 app.update_display(line)
-                app.update_cube_orientation(line)  # Update cube orientation with the new angles
+                app.update_cube_orientation(line)
 
     def save_to_csv(self, data):
         with open(self.file_path, mode='a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow([data])  # Adjust based on the structure of the data
+            writer.writerow([data])
 
     def stop(self):
         self.running = False
@@ -36,6 +38,22 @@ class App:
         self.frame1 = tk.Frame(master)
         self.frame1.pack(side=tk.LEFT)
 
+        # Entry for COM Port
+        self.com_label = tk.Label(self.frame1, text="COM Port:")
+        self.com_label.pack()
+        self.com_entry = tk.Entry(self.frame1)
+        self.com_entry.pack()
+
+        # Entry for CSV File Path
+        self.file_label = tk.Label(self.frame1, text="CSV File Path:")
+        self.file_label.pack()
+        self.file_entry = tk.Entry(self.frame1)
+        self.file_entry.pack()
+
+        # Status label for connection
+        self.status_label = tk.Label(self.frame1, text="OFFLINE", fg="red", font=("Helvetica", 12))
+        self.status_label.pack()
+
         # Serial Data Section
         self.text_area = tk.Text(self.frame1, height=20, width=50)
         self.text_area.pack()
@@ -43,8 +61,13 @@ class App:
         self.start_button = tk.Button(self.frame1, text="Start", command=self.start_reading)
         self.start_button.pack()
 
-        self.stop_button = tk.Button(self.frame1, text="Stop", command=self.stop_reading)
-        self.stop_button.pack()
+        # Button to hide/show data received frame
+        self.toggle_data_button = tk.Button(self.frame1, text="Toggle Data Frame", command=self.toggle_data_display)
+        self.toggle_data_button.pack()
+
+        # Button to hide/show cube sketch
+        self.toggle_cube_button = tk.Button(self.frame1, text="Toggle Cube Display", command=self.toggle_cube_display)
+        self.toggle_cube_button.pack()
 
         self.serial_reader = None
 
@@ -68,6 +91,12 @@ class App:
         # Initial drawing of the cube
         self.draw_cube()
 
+        # Toggle for continuous updates
+        self.is_rotating = False
+
+        # Handle window close
+        self.master.protocol("WM_DELETE_WINDOW", self.on_closing)
+
     def initialize_cube_vertices(self):
         return [
             [-50, -50, -50],
@@ -86,10 +115,10 @@ class App:
             [0, 4], [1, 5], [2, 6], [3, 7],
             [4, 5], [5, 6], [6, 7], [7, 4]
         ]
-    
-    def init_cube_top_face(self):
+
+    def init_cube_front_face(self):
         return [
-            [0, 1, 5, 4]
+            [0, 1, 2, 3]
         ]
 
     def update_display(self, data):
@@ -97,14 +126,29 @@ class App:
         self.text_area.see(tk.END)  # Scroll to the end
 
     def start_reading(self):
-        self.serial_reader = SerialReader(port='COM4', baudrate=9600, file_path='Repo_GUI\\GUI_CubeSat\\File.csv')
-        self.thread = threading.Thread(target=self.serial_reader.read_serial)
-        self.thread.start()
+        port = self.com_entry.get()  # Get the COM port from the entry
+        file_path = self.file_entry.get()  # Get the CSV file path from the entry
+        
+        # Validate COM port and file path
+        if self.validate_inputs(port, file_path):
+            self.serial_reader = SerialReader(port=port, baudrate=9600, file_path=file_path)
+            self.thread = threading.Thread(target=self.serial_reader.read_serial)
+            self.thread.start()
+            self.update_status("ONLINE", "green")
+        else:
+            self.update_status("OFFLINE", "red")
 
-    def stop_reading(self):
-        if self.serial_reader:
-            self.serial_reader.stop()
-            self.thread.join()  # Wait for the thread to finish
+    def validate_inputs(self, port, file_path):
+        # Check if the port is available and the file path exists
+        available_ports = [p.device for p in serial.tools.list_ports.comports()]  # List available COM ports
+        if port not in available_ports:  # Check if the specified port is available
+            return False
+        if not os.path.isfile(file_path):  # Check if file path exists
+            return False
+        return True
+
+    def update_status(self, status, color):
+        self.status_label.config(text=status, fg=color)
 
     def rotate_cube(self, angle_x, angle_y, angle_z):
         cos_x, sin_x = math.cos(angle_x), math.sin(angle_x)
@@ -139,8 +183,8 @@ class App:
             p2 = self.project(self.vertices[edge[1]])
             self.canvas.create_line(p1[0], p1[1], p2[0], p2[1], tags="cube")
 
-        # Draw the top face
-        for face in self.init_cube_top_face():
+        # Draw the front face
+        for face in self.init_cube_front_face():
             p1 = self.project(self.vertices[face[0]])
             p2 = self.project(self.vertices[face[1]])
             p3 = self.project(self.vertices[face[2]])
@@ -154,19 +198,46 @@ class App:
         y = vertex[1] * scale + 200  # Center the cube in the canvas
         return [x, y]
 
+    def toggle_cube_display(self):
+        # Toggle the visibility of the canvas (3D cube sketch)
+        if self.canvas.winfo_ismapped():
+            self.canvas.pack_forget()  # Hide the canvas
+        else:
+            self.canvas.pack()  # Show the canvas
+
+    def toggle_data_display(self):
+        # Toggle the visibility of the text area (data received frame)
+        if self.text_area.winfo_ismapped():
+            self.text_area.pack_forget()  # Hide the text area
+        else:
+            self.text_area.pack()  # Show the text area
+
+    def toggle_rotation(self):
+        self.is_rotating = not self.is_rotating
+        if self.is_rotating:
+            self.update_continuous_rotation()
+
+    def update_continuous_rotation(self):
+        if self.is_rotating:
+            self.draw_cube()  # Redraw the cube with current orientation
+            self.master.after(100, self.update_continuous_rotation)  # Update every 100 milliseconds
+
     def update_cube_orientation(self, data):
         try:
             # Assuming data format is "angle_x,angle_y,angle_z"
             angles = list(map(float, data.split(',')))
-            if len(angles) == 3:
-                self.angle_x, self.angle_y, self.angle_z = [math.radians(angle) for angle in angles]
-                self.rotate_cube(self.angle_x, self.angle_y, self.angle_z)
-                self.draw_cube()  # Redraw the cube with the new orientation
-        except ValueError:
-            print("Invalid angle data received")
+            self.angle_x, self.angle_y, self.angle_z = angles
+            self.rotate_cube(self.angle_x * math.pi / 180, self.angle_y * math.pi / 180, self.angle_z * math.pi / 180)
+            self.draw_cube()
+        except Exception as e:
+            print("Error updating cube orientation:", e)
+
+    def on_closing(self):
+        if self.serial_reader:
+            self.serial_reader.stop()
+        self.master.destroy()
 
 if __name__ == "__main__":
     root = tk.Tk()
     app = App(root)
-    root.protocol("WM_DELETE_WINDOW", app.stop_reading)  # Handle window close
     root.mainloop()
