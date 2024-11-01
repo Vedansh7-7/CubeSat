@@ -1,17 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
 import customtkinter as ctk
-
-# Initialize the CustomTkinter app
-app = ctk.CTk()
-app.geometry("500x400")
-app.title("Basic File Operations")
-
-# File path
-file_path = "Repo_GUI\GUI_CubeSat\File.txt"
-import tkinter as tk
-from tkinter import messagebox
-import customtkinter as ctk
 import csv
 
 # Initialize the CustomTkinter app
@@ -86,6 +75,7 @@ text_widget.pack(pady=10)
 # Run the app
 app.mainloop()
 
+file_path = r'Repo_GUI\GUI_CubeSat\File.csv'
 # Function to read file
 def read_file():
     try:
