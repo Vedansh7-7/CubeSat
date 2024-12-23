@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from Main import main
 from tkinter import messagebox
+from aise_hi import AudioApp
 
 # Set the theme and appearance mode for customtkinter
 ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"

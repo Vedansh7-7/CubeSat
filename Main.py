@@ -1,5 +1,6 @@
 import customtkinter as ctk
-from PIL import Image
+from PIL import Image, ImageTk
+from aise_hi import AudioApp
 # Set the theme and appearance mode for customtkinter
 ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
 ctk.set_default_color_theme("green")  # Default color theme
@@ -65,7 +66,21 @@ def main(Login):
         clicked_button.configure(fg_color=selected_button_color)
 
     # Create different frames for each button in mframe
-    frame1 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
+    frame1 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black", )
+    AudioApp(frame1)
+    # Load the image using PIL
+    image = Image.open("cubesatIMG.jpg")
+    image = image.resize((848, 395))  # Resize the image if needed
+    # Convert the image to a format customtkinter can use
+    image_tk = ImageTk.PhotoImage(image)
+    # Place the image inside the frame using a label
+    image_label = ctk.CTkLabel(frame1, image=image_tk)
+    image_label.pack(pady=20)
+
+    # Keep the image reference to prevent it from being garbage collected
+    image_label.image = image_tk
+
+
     frame2 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="blue")
     frame3 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
     frame4 = ctk.CTkFrame(mframe, width=848, height=395)
@@ -103,39 +118,39 @@ def main(Login):
     #BUTTONS
 
     #button1
-    icon_image1= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\home.png"), size=(40, 40))
+    icon_image1= ctk.CTkImage(Image.open(r"C:\Users\aictm\Downloads\home-agreement.png"), size=(40, 40))
 
     # Create a button with an icon
     button1 = ctk.CTkButton(iframe, text="Home",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image1, compound="top",fg_color=default_button_color, command=lambda: toggle_frame(frame1, "frame1",button1))
     button1.pack(pady=6)
 
     #button2
-    icon_image2= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\compass.png"), size=(40, 40))
+    icon_image2= ctk.CTkImage(Image.open(r"C:\Users\aictm\Downloads\cardinal-point.png"), size=(40, 40))
     button2 = ctk.CTkButton(iframe, text="Magnetometer",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image2, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame2, "frame1",button2))
     button2.pack(pady=6)
 
     #button3
-    icon_image3= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\humidity.png"), size=(40, 40))
+    icon_image3= ctk.CTkImage(Image.open(r"C:\Users\aictm\Downloads\pressure-gauge.png"), size=(40, 40))
     button3 = ctk.CTkButton(iframe, text="BMP-180",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image3, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame3, "frame1",button3))
     button3.pack(pady=6)
 
     #button4
-    icon_image4= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\placeholder.png"), size=(40, 40))
+    icon_image4= ctk.CTkImage(Image.open(r"C:\Users\aictm\Downloads\gps.png"), size=(40, 40))
     button4 = ctk.CTkButton(iframe, text="GPS module",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image4, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame4, "frame1",button4))
     button4.pack(pady=6)
 
     #button5
-    icon_image5= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\humidity (1).png"), size=(40, 40))
+    icon_image5= ctk.CTkImage(Image.open(r"C:\Users\aictm\Downloads\humidity.png"), size=(40, 40))
     button5 = ctk.CTkButton(iframe, text="DHT-11",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image5, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame5, "frame1",button5))
     button5.pack(pady=6)
 
     #button6
-    icon_image6= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\3d.png"), size=(40, 40))
+    icon_image6= ctk.CTkImage(Image.open(r"C:\Users\aictm\Downloads\3d-modeling.png"), size=(40, 40))
     button6 = ctk.CTkButton(iframe, text="3D view",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image6, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame6, "frame1",button6))
     button6.pack(pady=6)
     
  
-    icon_image7= ctk.CTkImage(Image.open(r"E:\C downloads backup\Downloads\speedometer.png"), size=(40, 40))
+    icon_image7= ctk.CTkImage(Image.open(r"C:\Users\aictm\Downloads\tools-and-utensils.png"), size=(40, 40))
     button7 = ctk.CTkButton(iframe, text="Accelerometer",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image7, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame7, "frame1", button7))
     button7.pack(pady=6)
 

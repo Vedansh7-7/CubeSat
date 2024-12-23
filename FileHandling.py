@@ -9,7 +9,7 @@ app.geometry("600x500")
 app.title("CSV File Handling")
 
 # CSV file path
-csv_file_path = r"Repo_GUI\GUI_CubeSat\File.csv"
+csv_file_path = r"File.csv"
 
 # Function to read CSV file
 def read_csv():
