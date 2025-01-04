@@ -27,12 +27,12 @@ def main(Login):
     default_button_color = "transparent" # Default button colors
     selected_button_color = "#844A84"  # Color for the selected button
 
-    iframe = ctk.CTkFrame(root,  width=55, height=395)
+    iframe = ctk.CTkFrame(root,  width=55, height=98)
     iframe.pack(padx=10, pady=10)
     iframe.pack_propagate(False)
     iframe.pack(side="left", fill="y")
 
-    mframe = ctk.CTkFrame(root,  width=848, height=395)
+    mframe = ctk.CTkFrame(root,  width=848, height=98)
     mframe.pack( pady=10, padx=10)
     mframe.pack_propagate(False)
     mframe.pack(fill='both',expand= True)
@@ -81,7 +81,7 @@ def main(Login):
     AudioApp(frame1)
     # Load the image using PIL
     image = Image.open("cubesatIMG.jpg")
-    image = image.resize((848, 395))  # Resize the image if needed
+    image = image.resize((848, 98))  # Resize the image if needed
     # Convert the image to a format customtkinter can use
     image_tk = ImageTk.PhotoImage(image)
     # Place the image inside the frame using a label
@@ -100,6 +100,47 @@ def main(Login):
     frame7 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
 
     all_frames = [frame1, frame2, frame3, frame4, frame5, frame6, frame7]  # List of all frames
+
+    #subframes
+    frame21 = ctk.CTkFrame(frame2, width=848, height=296)
+    frame22 = ctk.CTkFrame(frame2, width=848, height=98)
+    frame31 = ctk.CTkFrame(frame3, width=848, height=296)
+    frame32 = ctk.CTkFrame(frame3, width=848, height=98)
+    frame41 = ctk.CTkFrame(frame4, width=848, height=296)
+    frame42 = ctk.CTkFrame(frame4, width=848, height=98)
+    frame51 = ctk.CTkFrame(frame5, width=848, height=296)
+    frame52 = ctk.CTkFrame(frame5, width=848, height=98)
+    frame61 = ctk.CTkFrame(frame6, width=848, height=296)
+    frame62 = ctk.CTkFrame(frame6, width=848, height=98)
+    frame71 = ctk.CTkFrame(frame7, width=848, height=296)
+    frame72 = ctk.CTkFrame(frame7, width=848, height=98)
+
+    frame21.pack(fill='both', expand= True, pady= 3, padx=3)
+    frame31.pack(fill='both', expand= True , pady= 3, padx=3)
+    frame41.pack(fill='both', expand= True, pady= 3, padx=3)
+    frame51.pack(fill='both', expand= True, pady= 3, padx=3)
+    frame61.pack(fill='both', expand= True, pady= 3, padx=3)
+    frame71.pack(fill='both', expand= True, pady= 3, padx=3)
+    frame22.pack(fill='both', expand= True, pady= 3, padx=3)
+    frame32.pack(fill='both', expand= True, pady= 3, padx=3)
+    frame42.pack(fill='both', expand= True, pady= 3, padx=3)
+    frame52.pack(fill='both', expand= True, pady= 3, padx=3)
+    frame62.pack(fill='both', expand= True, pady= 3, padx=3)
+    frame72.pack(fill='both', expand= True, pady= 3, padx=3)
+    # frame21.place(x=0, y=0, relwidth=1, relheight=0.75)
+    # frame31.place(x=0, y=0)
+    # frame41.place(x=0, y=0)
+    # frame51.place(x=0, y=0)
+    # frame61.place(x=0, y=0)
+    # frame71.place(x=0, y=0)
+    # frame22.place(x=0, y=297, relwidth=1, relheight=0.24)
+    # frame32.place(x=0, y=297)
+    # frame42.place(x=0, y=297)
+    # frame52.place(x=0, y=297)
+    # frame62.place(x=0, y=297)
+    # frame72.place(x=0, y=297)
+
+
 
     ## Add content to each frame
     # label1 = ctk.CTkLabel(frame1, text="Frame 1", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
