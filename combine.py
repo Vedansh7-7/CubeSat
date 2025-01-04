@@ -150,32 +150,35 @@ def main(Login):
     label7 = ctk.CTkLabel(frame7, text="Frame 7", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
     label7.pack(pady=20)
 
-    icon_image1 = ctk.CTkImage(Image.open(r"C:\Users\aictm\Downloads\home-agreement.png"), size=(40, 40))
+    icon_image1 = ctk.CTkImage(Image.open(r"Logo\home.png"), size=(40, 40))
     button1 = ctk.CTkButton(iframe, text="Home", font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image1, compound="top", fg_color=default_button_color, command=lambda: toggle_frame(frame1, "frame1", button1))
     button1.pack(pady=6)
 
-    icon_image2 = ctk.CTkImage(Image.open(r"C:\Users\aictm\Downloads\cardinal-point.png"), size=(40, 40))
+    icon_image2 = ctk.CTkImage(Image.open(r"Logo\cardinal.png"), size=(40, 40))
     button2 = ctk.CTkButton(iframe, text="Magnetometer", font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image2, compound="top", fg_color=default_button_color, command=lambda: toggle_frame(frame2, "frame2", button2))
     button2.pack(pady=6)
 
-    icon_image3 = ctk.CTkImage(Image.open(r"C:\Users\aictm\Downloads\pressure-gauge.png"), size=(40, 40))
+    icon_image3 = ctk.CTkImage(Image.open(r"Logo\pressure.png"), size=(40, 40))
     button3 = ctk.CTkButton(iframe, text="BMP-180", font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image3, compound="top", fg_color=default_button_color, command=lambda: toggle_frame(frame3, "frame3", button3))
     button3.pack(pady=6)
 
-    icon_image4 = ctk.CTkImage(Image.open(r"C:\Users\aictm\Downloads\gps.png"), size=(40, 40))
+    icon_image4 = ctk.CTkImage(Image.open(r"Logo\gps.png"), size=(40, 40))
     button4 = ctk.CTkButton(iframe, text="GPS", font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image4, compound="top", fg_color=default_button_color, command=lambda: toggle_frame(frame4, "frame4", button4))
     button4.pack(pady=6)
 
-    icon_image5 = ctk.CTkImage(Image.open(r"C:\Users\aictm\Downloads\gyroscope.png"), size=(40, 40))
-    button5 = ctk.CTkButton(iframe, text="MPU-6050", font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image5, compound="top", fg_color=default_button_color, command=lambda: toggle_frame(frame5, "frame5", button5))
+#button5
+    icon_image5= ctk.CTkImage(Image.open(r"Logo\humidity.png"), size=(40, 40))
+    button5 = ctk.CTkButton(iframe, text="DHT-11",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image5, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame5, "frame1",button5))
     button5.pack(pady=6)
 
-    icon_image6 = ctk.CTkImage(Image.open(r"C:\Users\aictm\Downloads\satellite.png"), size=(40, 40))
-    button6 = ctk.CTkButton(iframe, text="Satellite", font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image6, compound="top", fg_color=default_button_color, command=lambda: toggle_frame(frame6, "frame6", button6))
+    #button6
+    icon_image6= ctk.CTkImage(Image.open(r"Logo\3d.png"), size=(40, 40))
+    button6 = ctk.CTkButton(iframe, text="3D view",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image6, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame6, "frame1",button6))
     button6.pack(pady=6)
-
-    icon_image7 = ctk.CTkImage(Image.open(r"C:\Users\aictm\Downloads\satellite-dish.png"), size=(40, 40))
-    button7 = ctk.CTkButton(iframe, text="Ground Station", font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image7, compound="top", fg_color=default_button_color, command=lambda: toggle_frame(frame7, "frame7", button7))
+    
+ 
+    icon_image7= ctk.CTkImage(Image.open(r"Logo\tools.png"), size=(40, 40))
+    button7 = ctk.CTkButton(iframe, text="Accelerometer",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image7, compound="top",fg_color=default_button_color, command=lambda:toggle_frame(frame7, "frame1", button7))
     button7.pack(pady=6)
 
     all_buttons = [button1, button2, button3, button4, button5, button6, button7]

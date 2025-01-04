@@ -47,6 +47,7 @@ def main(Login):
     # #Function to switch between frames
     # def show_frame(frame):
     #     frame.tkraise()
+
 # Function to toggle frame visibility
     def toggle_frame(frame, frame_name,clicked_button):
         if frame_states[frame_name]:  # If the frame is visible, hide it
@@ -90,27 +91,27 @@ def main(Login):
 
     all_frames = [frame1, frame2, frame3, frame4, frame5, frame6, frame7]  # List of all frames
 
-    # Add content to each frame
-    label1 = ctk.CTkLabel(frame1, text="Frame 1", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
-    label1.pack(pady=20)
+    ## Add content to each frame
+    # label1 = ctk.CTkLabel(frame1, text="Frame 1", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
+    # label1.pack(pady=20)
 
-    label2 = ctk.CTkLabel(frame2, text="Frame 2", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
-    label2.pack(pady=20)
+    # label2 = ctk.CTkLabel(frame2, text="Frame 2", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
+    # label2.pack(pady=20)
 
-    label3 = ctk.CTkLabel(frame3, text="Frame 3", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
-    label3.pack(pady=20)
+    # label3 = ctk.CTkLabel(frame3, text="Frame 3", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
+    # label3.pack(pady=20)
 
-    label4 = ctk.CTkLabel(frame4, text="Frame 4", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
-    label4.pack(pady=20)
+    # label4 = ctk.CTkLabel(frame4, text="Frame 4", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
+    # label4.pack(pady=20)
 
-    label5 = ctk.CTkLabel(frame5, text="Frame 5", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
-    label5.pack(pady=20)
+    # label5 = ctk.CTkLabel(frame5, text="Frame 5", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
+    # label5.pack(pady=20)
 
-    label6 = ctk.CTkLabel(frame6, text="Frame 6", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
-    label6.pack(pady=20)
+    # label6 = ctk.CTkLabel(frame6, text="Frame 6", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
+    # label6.pack(pady=20)
 
-    label7 = ctk.CTkLabel(frame7, text="Frame 7", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
-    label7.pack(pady=20)
+    # label7 = ctk.CTkLabel(frame7, text="Frame 7", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
+    # label7.pack(pady=20)
 
 
 
