@@ -15,14 +15,5 @@ def send_data(data):
     response = arduino.readline().decode('utf-8').strip()  # Read response
     print("Arduino Response:", response)
 
-# Send a test message
-x = []
-for i in range(120):
-    x.append("Raam")
-
-for data_Bhejo in range(len(x)):
-    send_data(x[data_Bhejo])
-    # time.sleep(1)
-
 # Close the serial connection when done
 arduino.close()
