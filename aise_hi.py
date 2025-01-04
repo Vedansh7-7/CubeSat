@@ -4,7 +4,7 @@ import pygame
 class AudioApp:
     def __init__(self, frame):
         self.frame = frame
-        self.audio_path = "E:/Musics/The Chainsmokers & Coldplay - Something Just Like This (cover by COLOR MUSIC Choir).mp3"  # Ensure correct path
+        self.audio_path = "september.mp3"  # Ensure correct path
 
         # Initialize pygame mixer for audio
         pygame.mixer.init()
