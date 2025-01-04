@@ -101,9 +101,10 @@ class App:
 
     def rotate_cube(self):
         # Update angles for rotation
-        self.angle_x += math.radians(2)
-        self.angle_y += math.radians(3)
-        self.angle_z += math.radians(1)
+        for i in range (0, int(math.pi)):
+            self.angle_x = math.radians(i)
+            self.angle_y = math.radians(int(i/2))
+            # self.angle_z += math.radians(0)
 
         # Rotate vertices
         self.rotate_vertices(self.angle_x, self.angle_y, self.angle_z)
@@ -112,7 +113,7 @@ class App:
         self.draw_cube()
 
         # Schedule the next frame
-        self.master.after(500, self.rotate_cube)
+        self.master.after(75, self.rotate_cube)
 
 if __name__ == "__main__":
     app = ctk.CTk()

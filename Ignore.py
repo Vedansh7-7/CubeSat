@@ -237,6 +237,8 @@ class App:
             self.serial_reader.stop()
         self.master.destroy()
 
+    
+
 if __name__ == "__main__":
     root = tk.Tk()
     app = App(root)
