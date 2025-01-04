@@ -4,7 +4,7 @@ from tkinter import messagebox
 from aise_hi import AudioApp
 
 # Set the theme and appearance mode for customtkinter
-ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
+ctk.set_appearance_mode("light")  # Options: "dark", "light", or "system"
 ctk.set_default_color_theme("dark-blue")  # Default color theme
 
 # Functions
