@@ -19,7 +19,10 @@ class AudioApp:
 
     def stop_audio(self):
         # Fade out the audio playback over 2000 milliseconds (2 seconds)
+        self.frame.place_forget()
+        
         pygame.mixer.music.fadeout(2000)
         
         # Hide the frame after the audio fades out
-        self.frame.after(2000, self.frame.place_forget)  # 2000 ms corresponds to the fadeout duration
+        # self.frame.after(2000, self.frame.place_forget)  # 2000 ms corresponds to the fadeout duration
+        
