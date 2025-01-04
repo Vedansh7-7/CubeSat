@@ -94,10 +94,10 @@ def main(Login):
     
     frame2 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="blue")
     frame3 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
-    frame4 = ctk.CTkFrame(mframe, width=848, height=395)
+    frame4 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
     frame5 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
-    frame6 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="green")
-    frame7 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="green")
+    frame6 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
+    frame7 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
 
     all_frames = [frame1, frame2, frame3, frame4, frame5, frame6, frame7]  # List of all frames
 
