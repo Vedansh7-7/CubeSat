@@ -14,7 +14,7 @@ def main(Login):
     root.geometry("900x600") 
 # Define frame visibility states
     frame_states = {
-        "frame1": True,
+        "frame1": False,
         "frame2": False,
         "frame3": False,
         "frame4": False,
@@ -66,8 +66,18 @@ def main(Login):
         # Change the clicked button color
         clicked_button.configure(fg_color=selected_button_color)
 
+    def close_frame():
+    # Hide all frames
+        for frame in all_frames:
+            frame.place_forget()
+            frame_states[frame._name] = False  # Reset the state of all frames
+
+    # Reset all button colors to the default
+        for button in all_buttons:
+            button.configure(fg_color=default_button_color)
+
     # Create different frames for each button in mframe
-    frame1 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black", )
+    frame1 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
     AudioApp(frame1)
     # Load the image using PIL
     image = Image.open("cubesatIMG.jpg")
@@ -81,7 +91,7 @@ def main(Login):
     # Keep the image reference to prevent it from being garbage collected
     image_label.image = image_tk
 
-
+    
     frame2 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="blue")
     frame3 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
     frame4 = ctk.CTkFrame(mframe, width=848, height=395)
@@ -122,7 +132,7 @@ def main(Login):
     icon_image1= ctk.CTkImage(Image.open(r"Logo\home.png"), size=(40, 40))
 
     # Create a button with an icon
-    button1 = ctk.CTkButton(iframe, text="Home",  font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image1, compound="top",fg_color=default_button_color, command=lambda: toggle_frame(frame1, "frame1",button1))
+    button1 = ctk.CTkButton(iframe, text="Home", font=ctk.CTkFont(family="Inter", size=10, weight="normal"), image=icon_image1, compound="top", fg_color=default_button_color, command=close_frame) # Use the close_frame function
     button1.pack(pady=6)
 
     #button2

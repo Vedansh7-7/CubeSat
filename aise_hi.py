@@ -13,9 +13,12 @@ class AudioApp:
         pygame.mixer.music.load(self.audio_path)
         pygame.mixer.music.play()
 
-        # Create a customtkinter button to stop the audio
-        self.play_button = ctk.CTkButton(frame, text="Continue", command=self.stop_audio)
-        self.play_button.pack(pady=20)
+        # Hide the frame after the audio fades out
+        self.frame.after(5000, self.stop_audio)
+
+        # # Create a customtkinter button to stop the audio
+        # self.play_button = ctk.CTkButton(frame, text="Continue", command=self.stop_audio)
+        # self.play_button.pack(pady=20)
 
     def stop_audio(self):
         # Fade out the audio playback over 2000 milliseconds (2 seconds)
