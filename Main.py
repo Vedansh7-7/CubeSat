@@ -181,7 +181,7 @@ def main(Login):
     frame62.pack(fill='both', expand= True, pady= 3, padx=3)
     frame72.pack(fill='both', expand= True, pady= 3, padx=3)
    
-
+    Pro_Cube(frame61)
 
     #BUTTONS
 
