@@ -1,6 +1,8 @@
+# import tkinter as tk
 import customtkinter as ctk
 from PIL import Image, ImageTk
 from aise_hi import AudioApp
+# from Ignore import App
 # Set the theme and appearance mode for customtkinter
 ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
 ctk.set_default_color_theme("green")  # Default color theme
@@ -43,7 +45,7 @@ def main(Login):
     otab = tabview.add("OVERVIEW")
     dtab = tabview.add("Data Sheet")
     tabview.set("OVERVIEW")
-    
+
     # #Function to switch between frames
     # def show_frame(frame):
     #     frame.tkraise()
@@ -127,44 +129,7 @@ def main(Login):
     frame52.pack(fill='both', expand= True, pady= 3, padx=3)
     frame62.pack(fill='both', expand= True, pady= 3, padx=3)
     frame72.pack(fill='both', expand= True, pady= 3, padx=3)
-    # frame21.place(x=0, y=0, relwidth=1, relheight=0.75)
-    # frame31.place(x=0, y=0)
-    # frame41.place(x=0, y=0)
-    # frame51.place(x=0, y=0)
-    # frame61.place(x=0, y=0)
-    # frame71.place(x=0, y=0)
-    # frame22.place(x=0, y=297, relwidth=1, relheight=0.24)
-    # frame32.place(x=0, y=297)
-    # frame42.place(x=0, y=297)
-    # frame52.place(x=0, y=297)
-    # frame62.place(x=0, y=297)
-    # frame72.place(x=0, y=297)
-
-
-
-    ## Add content to each frame
-    # label1 = ctk.CTkLabel(frame1, text="Frame 1", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
-    # label1.pack(pady=20)
-
-    # label2 = ctk.CTkLabel(frame2, text="Frame 2", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
-    # label2.pack(pady=20)
-
-    # label3 = ctk.CTkLabel(frame3, text="Frame 3", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
-    # label3.pack(pady=20)
-
-    # label4 = ctk.CTkLabel(frame4, text="Frame 4", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
-    # label4.pack(pady=20)
-
-    # label5 = ctk.CTkLabel(frame5, text="Frame 5", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
-    # label5.pack(pady=20)
-
-    # label6 = ctk.CTkLabel(frame6, text="Frame 6", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
-    # label6.pack(pady=20)
-
-    # label7 = ctk.CTkLabel(frame7, text="Frame 7", font=ctk.CTkFont(family="Inter", size=30, weight="normal"))
-    # label7.pack(pady=20)
-
-
+   
 
 
     #BUTTONS
