@@ -1,17 +1,15 @@
 import customtkinter as ctk
 import math
 
-class App:
+class Pro_Cube:
     def __init__(self, master):
         self.master = master
-        self.master.title("3D Cube Rotation Demo")
-
-        # Create a frame for cube rotation
-        self.frame = ctk.CTkFrame(master, width=400, height=400)
-        self.frame.pack(padx=10, pady=10)
+        # # Create a frame for cube rotation
+        # self.frame = ctk.CTkFrame(master, width=400, height=400)
+        # self.frame.pack(padx=10, pady=10)
 
         # Initialize Cube Drawing
-        self.canvas = ctk.CTkCanvas(self.frame, width=400, height=400, bg="white")
+        self.canvas = ctk.CTkCanvas(self.master, width=400, height=400, bg="white")
         self.canvas.pack()
 
         # 3D Cube Vertices and Edges
@@ -81,12 +79,6 @@ class App:
         self.canvas.delete('cube')
         self.canvas.delete('face')
 
-        # Draw edges
-        for edge in self.edges:
-            p1 = self.project(self.vertices[edge[0]])
-            p2 = self.project(self.vertices[edge[1]])
-            self.canvas.create_line(p1[0], p1[1], p2[0], p2[1], tags="cube", fill="black", width=2)
-
         # Draw the front face in orange
         front_face = [0, 1, 2, 3]
         p1 = self.project(self.vertices[front_face[0]])
@@ -96,15 +88,23 @@ class App:
         self.canvas.create_polygon(
             p1[0], p1[1], p2[0], p2[1],
             p3[0], p3[1], p4[0], p4[1],
-            outline="black", fill="orange", width=2, tags="face"
+            outline="black", fill="gray", width=2, tags="face"
         )
+
+        # Draw edges
+        for edge in self.edges:
+            p1 = self.project(self.vertices[edge[0]])
+            p2 = self.project(self.vertices[edge[1]])
+            self.canvas.create_line(p1[0], p1[1], p2[0], p2[1], tags="cube", fill="black", width=2)
+
+        
 
     def rotate_cube(self):
         # Update angles for rotation
         for i in range (0, int(math.pi)):
             self.angle_x = math.radians(i)
             self.angle_y = math.radians(int(i/2))
-            # self.angle_z += math.radians(0)
+            self.angle_z = math.radians(1+i)
 
         # Rotate vertices
         self.rotate_vertices(self.angle_x, self.angle_y, self.angle_z)
@@ -113,9 +113,15 @@ class App:
         self.draw_cube()
 
         # Schedule the next frame
-        self.master.after(75, self.rotate_cube)
+        self.master.after(50, self.rotate_cube)
 
-if __name__ == "__main__":
-    app = ctk.CTk()
-    App(app)
-    app.mainloop()
+
+# if __name__ == "__main__":
+#     app = ctk.CTk()  # Create the main application window
+#     app.geometry("800x600") # Set the window size
+#     frame = ctk.CTkFrame(app, width=400, height=400, bg_color='orange') # Create the frame
+#     frame.pack(padx=10, pady=10) # Pack the frame within the app
+
+#     cube_instance = Pro_Cube(frame) # Pass the frame to the Pro_Cube class
+    
+#     app.mainloop() # Start the main application's event loop

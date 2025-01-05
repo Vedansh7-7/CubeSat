@@ -2,6 +2,7 @@
 import customtkinter as ctk
 from PIL import Image, ImageTk
 from aise_hi import AudioApp
+from CubeProjection import Pro_Cube
 # from Ignore import App
 # Set the theme and appearance mode for customtkinter
 ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
@@ -12,6 +13,7 @@ ctk.set_default_color_theme("green")  # Default color theme
 def main(Login):
     Login.destroy()
     root = ctk.CTk()
+    
     root.title("Main page")
     root.geometry("900x600") 
 # Define frame visibility states
@@ -46,6 +48,31 @@ def main(Login):
     dtab = tabview.add("Data Sheet")
     tabview.set("OVERVIEW")
 
+    overview_frame = ctk.CTkFrame(otab, width=848, height=420)
+    overview_frame.pack(fill='both', expand=True)
+
+    # Configure rows and columns using weights for collage layout
+    overview_frame.grid_rowconfigure(0, weight=3)  # Top row (both parts)
+    overview_frame.grid_rowconfigure(1, weight=3)  # Bottom row
+    overview_frame.grid_columnconfigure(0, weight=1)  # Left column
+    overview_frame.grid_columnconfigure(1, weight=1)  # Right column
+
+    top_left_frame = ctk.CTkFrame(overview_frame)
+    top_left_frame.grid(row=0, column=0, sticky="nsew")
+
+    top_right_frame = ctk.CTkFrame(overview_frame, fg_color="lightgreen")
+    top_right_frame.grid(row=0, column=1, sticky="nsew")
+
+    bottom_frame = ctk.CTkFrame(overview_frame, fg_color="lightcoral")
+    bottom_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")
+
+
+
+    # cube_frame = ctk.CTkFrame(overview_frame, width= 420, height=420)
+    # cube_frame.place(x=400, y=10, anchor= 'ne')
+
+    Pro_Cube(top_left_frame)
+
     # #Function to switch between frames
     # def show_frame(frame):
     #     frame.tkraise()
@@ -78,20 +105,44 @@ def main(Login):
         for button in all_buttons:
             button.configure(fg_color=default_button_color)
 
-    # Create different frames for each button in mframe
+
+# Create different frames for each button in mframe
     frame1 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
     AudioApp(frame1)
-    # Load the image using PIL
-    image = Image.open("cubesatIMG.jpg")
-    image = image.resize((848, 98))  # Resize the image if needed
-    # Convert the image to a format customtkinter can use
-    image_tk = ImageTk.PhotoImage(image)
-    # Place the image inside the frame using a label
-    image_label = ctk.CTkLabel(frame1, image=image_tk)
-    image_label.pack(pady=20)
+    try:
+        pil_image = Image.open(r"Logo\cubesatIMG.jpg")
 
-    # Keep the image reference to prevent it from being garbage collected
-    image_label.image = image_tk
+        def update_image_size(event, pil_image, label):
+            frame_width = event.widget.winfo_width()
+            frame_height = event.widget.winfo_height()
+            image_width, image_height = pil_image.size
+
+            # Rotate the image by 90 degrees counter-clockwise
+            rotated_image = pil_image.rotate(90, expand=True)  # Hardcoded 90-degree rotation
+
+            image_width, image_height = rotated_image.size
+            width_ratio = frame_width / image_width
+            height_ratio = frame_height / image_height
+            min_ratio = min(width_ratio, height_ratio)
+            new_width = int(image_width * min_ratio)
+            new_height = int(image_height * min_ratio)
+            resized_image = rotated_image.resize((new_width, new_height), Image.LANCZOS)
+            ctk_image = ctk.CTkImage(light_image=resized_image, dark_image=resized_image, size=resized_image.size)
+            label.configure(image=ctk_image)
+
+        # Rotate the original image for initial display
+        rotated_image = pil_image.rotate(90, expand=True)
+        ctk_image = ctk.CTkImage(light_image=rotated_image, dark_image=rotated_image, size=rotated_image.size)
+
+        label = ctk.CTkLabel(frame1, image=ctk_image, text="")
+        label.pack(expand=True, fill="both")
+
+        frame1.bind("<Configure>", lambda event: update_image_size(event, pil_image, label))
+        frame1.event_generate("<Configure>")
+
+    except FileNotFoundError:
+        label = ctk.CTkLabel(frame1, text="Image not found!")
+        label.pack()
 
     
     frame2 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="blue")
