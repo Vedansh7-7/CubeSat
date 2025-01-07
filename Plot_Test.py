@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 import customtkinter as ctk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import threading
 import pytz
 
 tz_india = pytz.timezone('Asia/Kolkata')
