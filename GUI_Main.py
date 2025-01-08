@@ -15,7 +15,7 @@ class SerialApp:
         self.file_entry.pack(pady=5)
 
         # Status label
-        self.status_label = ctk.CTkLabel(frame, text="OFFLINE", text_color="red", font=("Helvetica", 12))
+        self.status_label = ctk.CTkLabel(frame, text="OFFLINE", text_color="red", font=("Helvetica", 20))
         self.status_label.pack(pady=20)
 
 if __name__ == "__main__":
