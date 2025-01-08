@@ -1,27 +1,29 @@
-import tkinter as tk
+import customtkinter as ctk
 
 class SerialApp:
-    def __init__(self, master):
-        self.master = master
-        self.master.title("Serial Data Reader")
-
+    def __init__(self, frame):
         # Entry for COM Port
-        self.com_label = tk.Label(self.master, text="COM Port:")
-        self.com_label.pack()
-        self.com_entry = tk.Entry(self.master)
-        self.com_entry.pack()
+        self.com_label = ctk.CTkLabel(frame, text="COM Port:", text_color='#844A84')
+        self.com_label.pack(pady=10)
+        self.com_entry = ctk.CTkEntry(frame)
+        self.com_entry.pack(pady=5)
 
         # Entry for CSV File Path
-        self.file_label = tk.Label(self.master, text="CSV File Path:")
-        self.file_label.pack()
-        self.file_entry = tk.Entry(self.master)
-        self.file_entry.pack()
+        self.file_label = ctk.CTkLabel(frame, text="CSV File Path:",text_color='#844A84')
+        self.file_label.pack(pady=10)
+        self.file_entry = ctk.CTkEntry(frame)
+        self.file_entry.pack(pady=5)
 
         # Status label
-        self.status_label = tk.Label(self.master, text="OFFLINE", fg="red", font=("Helvetica", 12))
-        self.status_label.pack()
+        self.status_label = ctk.CTkLabel(frame, text="OFFLINE", text_color="red", font=("Helvetica", 12))
+        self.status_label.pack(pady=20)
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = SerialApp(root)
+    root = ctk.CTk()
+
+    # Create a frame to contain the widgets
+    frame = ctk.CTkFrame(root)
+    frame.pack(pady=20, padx=20)
+
+    app = SerialApp(frame)
     root.mainloop()
