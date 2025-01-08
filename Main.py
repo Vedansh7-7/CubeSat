@@ -3,6 +3,7 @@ import customtkinter as ctk
 from PIL import Image, ImageTk
 from aise_hi import AudioApp
 from CubeProjection import Pro_Cube
+from GUI_Main import SerialApp
 # from Ignore import App
 # Set the theme and appearance mode for customtkinter
 ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
@@ -60,10 +61,10 @@ def main(Login):
     top_left_frame = ctk.CTkFrame(overview_frame)
     top_left_frame.grid(row=0, column=0, sticky="nsew")
 
-    top_right_frame = ctk.CTkFrame(overview_frame, fg_color="lightgreen")
+    top_right_frame = ctk.CTkFrame(overview_frame, fg_color="#1E1E1E")
     top_right_frame.grid(row=0, column=1, sticky="nsew")
 
-    bottom_frame = ctk.CTkFrame(overview_frame, fg_color="lightcoral")
+    bottom_frame = ctk.CTkFrame(overview_frame, fg_color="#844A84")
     bottom_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")
 
 
@@ -72,6 +73,7 @@ def main(Login):
     # cube_frame.place(x=400, y=10, anchor= 'ne')
 
     Pro_Cube(top_left_frame)
+    SerialApp(top_right_frame)
 
     # #Function to switch between frames
     # def show_frame(frame):
