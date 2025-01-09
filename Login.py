@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from Main import main
+import PIL
 from PIL import Image, ImageTk
 from tkinter import messagebox
 from aise_hi import AudioApp
@@ -26,6 +27,20 @@ Login = ctk.CTk()
 Login.title("Login Window")
 Login.geometry("900x600") 
 Login.configure(fg_color="#000000")
+
+image = PIL.Image.open(r"Logo\bg.png")
+background_image = ctk.CTkImage(image, size=(500, 500))
+
+def bg_resizer(e):
+    if e.widget is Login:
+        i = ctk.CTkImage(image, size=(e.width, e.height))
+        bg_lbl.configure(text="", image=i)
+
+# Create a bg label
+bg_lbl = ctk.CTkLabel(Login, text="", image=background_image)
+bg_lbl.place(x=0, y=0)
+
+Login.bind("<Configure>", bg_resizer)
 
 # Create a frame to hold the login components
 frame = ctk.CTkFrame(Login, fg_color="#1E1E1E", width=513, height=270, corner_radius= 12)

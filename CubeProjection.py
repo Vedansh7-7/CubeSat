@@ -115,6 +115,16 @@ class Pro_Cube:
         # Schedule the next frame
         self.master.after(50, self.rotate_cube)
 
+    def update_cube_orientation(self, data):
+        try:
+            # Assuming data format is "angle_x,angle_y,angle_z"
+            angles = list(map(float, data.split(',')))
+            self.angle_x, self.angle_y, self.angle_z = angles
+            self.rotate_cube(self.angle_x * math.pi / 180, self.angle_y * math.pi / 180, self.angle_z * math.pi / 180)
+            self.draw_cube()
+        except Exception as e:
+            print("Error updating cube orientation:", e)
+
 
 # if __name__ == "__main__":
 #     app = ctk.CTk()  # Create the main application window

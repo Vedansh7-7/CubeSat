@@ -4,13 +4,10 @@ import serial.tools.list_ports
 import threading
 import math
 import os
+import csv
 
 class SerialApp:
-    def __init__(self, frame, port='COM3', baudrate=9600, file_path='File.csv'):
-        self.serial = serial.Serial(port, baudrate, timeout=1)
-        self.file_path = file_path
-        self.running = True
-
+    def __init__(self, frame):
         # Entry for COM Port
         self.com_label = ctk.CTkLabel(frame, text="COM Port:", text_color='#844A84')
         self.com_label.pack(pady=10)
@@ -29,7 +26,7 @@ class SerialApp:
         self.file_entry = ctk.CTkEntry(frame)
         self.file_entry.pack(pady=5)
 
-        # Status label
+        # Status Label
         self.status_label = ctk.CTkLabel(frame, text="OFFLINE", text_color="red", font=("Helvetica", 20))
         self.status_label.pack(pady=20)
 
@@ -52,6 +49,18 @@ class SerialApp:
             print(f"Error: File {file_path} not found.")
             return False
         return True
+    
+    def read_serial(self):
+        while self.running:
+            if self.serial.in_waiting > 0:
+                line = self.serial.readline().decode('utf-8').strip()
+                self.save_to_csv(line)
+                app.update_cube_orientation(line)
+
+    def save_to_csv(self, data):
+        with open(self.file_path, mode='a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([data])
 
     def start_reading(self):
         # Get user inputs
@@ -74,12 +83,12 @@ class SerialApp:
     def update_status(self, status, color):
         self.status_label.configure(text=status, text_color=color)
 
-if __name__ == "__main__":
-    root = ctk.CTk()
+# if __name__ == "__main__":
+#     root = ctk.CTk()
 
-    # Create a frame to contain the widgets
-    frame = ctk.CTkFrame(root)
-    frame.pack(pady=20, padx=20)
+#     # Create a frame to contain the widgets
+#     frame = ctk.CTkFrame(root)
+#     frame.pack(pady=20, padx=20)
 
-    app = SerialApp(frame)
-    root.mainloop()
+#     app = SerialApp(frame)
+#     root.mainloop()

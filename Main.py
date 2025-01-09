@@ -5,7 +5,7 @@ from aise_hi import AudioApp
 from CubeProjection import Pro_Cube
 from GUI_Main import SerialApp
 from Plot import PlotterGUI
-from FileHandling import read_csv
+from FileHandling import read_csv, append_csv
 # from Ignore import App
 # Set the theme and appearance mode for customtkinter
 ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
@@ -57,6 +57,7 @@ def main(Login):
     text_dframe = tk.Text(dataview_frame, wrap="word", height=98)
     text_dframe.pack(pady=10, anchor= 'w', fill='both', expand=True)
     read_csv(file_path, textA= text_dframe)
+    append_csv(file_path, textA= text_dframe)
 
 
     overview_frame = ctk.CTkFrame(otab, width=848, height=420)
@@ -83,7 +84,7 @@ def main(Login):
     # cube_frame.place(x=400, y=10, anchor= 'ne')
 
     Pro_Cube(top_left_frame)
-    SerialApp(top_right_frame, )
+    SerialApp(top_right_frame)
 
     # #Function to switch between frames
     # def show_frame(frame):
