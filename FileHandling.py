@@ -12,6 +12,7 @@ def read_csv(csv_file_path = r"File.csv", textA= tk.Text):
             reader = csv.reader(csvfile)
             for row in reader:
                 textA.insert(tk.END, ', '.join(row) + '\n')
+                textA.see(tk.END)  # Scroll to the end
     except Exception as e:
         messagebox.showerror("Error", f"Could not read CSV file: {e}")
 

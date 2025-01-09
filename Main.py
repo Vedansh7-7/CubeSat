@@ -83,7 +83,7 @@ def main(Login):
     # cube_frame.place(x=400, y=10, anchor= 'ne')
 
     Pro_Cube(top_left_frame)
-    SerialApp(top_right_frame)
+    SerialApp(top_right_frame, )
 
     # #Function to switch between frames
     # def show_frame(frame):
@@ -204,19 +204,19 @@ def main(Login):
     text2 = tk.Text(frame21, wrap="word", height=98)
     text2.pack(pady=10, anchor= 'w', fill='both', expand=True)
     read_csv(file_path, textA= text2)
-    text3 = tk.Text(frame21, wrap="word", height=98)
+    text3 = tk.Text(frame31, wrap="word", height=98)
     text3.pack(pady=10, anchor= 'w', fill='both', expand=True)
     read_csv(file_path, textA= text3)
-    text4 = tk.Text(frame21, wrap="word", height=98)
+    text4 = tk.Text(frame41, wrap="word", height=98)
     text4.pack(pady=10, anchor= 'w', fill='both', expand=True)
     read_csv(file_path, textA= text4)
-    text5 = tk.Text(frame21, wrap="word", height=98)
+    text5 = tk.Text(frame51, wrap="word", height=98)
     text5.pack(pady=10, anchor= 'w', fill='both', expand=True)
     read_csv(file_path, textA= text5)
-    text6 = tk.Text(frame21, wrap="word", height=98)
+    text6 = tk.Text(frame61, wrap="word", height=98)
     text6.pack(pady=10, anchor= 'w', fill='both', expand=True)
     read_csv(file_path, textA= text6)
-    text7 = tk.Text(frame21, wrap="word", height=98)
+    text7 = tk.Text(frame71, wrap="word", height=98)
     text7.pack(pady=10, anchor= 'w', fill='both', expand=True)
     read_csv(file_path, textA= text7)
     
