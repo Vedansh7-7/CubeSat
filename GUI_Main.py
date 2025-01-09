@@ -74,12 +74,12 @@ class SerialApp:
     def update_status(self, status, color):
         self.status_label.configure(text=status, text_color=color)
 
-# if __name__ == "__main__":
-#     root = ctk.CTk()
+if __name__ == "__main__":
+    root = ctk.CTk()
 
-#     # Create a frame to contain the widgets
-#     frame = ctk.CTkFrame(root)
-#     frame.pack(pady=20, padx=20)
+    # Create a frame to contain the widgets
+    frame = ctk.CTkFrame(root)
+    frame.pack(pady=20, padx=20)
 
-#     app = SerialApp(frame)
-#     root.mainloop()
+    app = SerialApp(frame)
+    root.mainloop()
