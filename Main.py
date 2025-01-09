@@ -1,14 +1,17 @@
-# import tkinter as tk
+import tkinter as tk
 import customtkinter as ctk
 from PIL import Image, ImageTk
 from aise_hi import AudioApp
 from CubeProjection import Pro_Cube
 from GUI_Main import SerialApp
+from Plot import PlotterGUI
+from FileHandling import read_csv
 # from Ignore import App
 # Set the theme and appearance mode for customtkinter
 ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
 ctk.set_default_color_theme("green")  # Default color theme
 
+file_path = r'File.csv'
 
 # Initialize main application window
 def main(Login):
@@ -49,6 +52,13 @@ def main(Login):
     dtab = tabview.add("Data Sheet")
     tabview.set("OVERVIEW")
 
+    dataview_frame = ctk.CTkFrame(dtab, width=848, height=420)
+    dataview_frame.pack(fill='both', expand=True)
+    text_dframe = tk.Text(dataview_frame, wrap="word", height=98)
+    text_dframe.pack(pady=10, anchor= 'w', fill='both', expand=True)
+    read_csv(file_path, textA= text_dframe)
+
+
     overview_frame = ctk.CTkFrame(otab, width=848, height=420)
     overview_frame.pack(fill='both', expand=True)
 
@@ -73,7 +83,7 @@ def main(Login):
     # cube_frame.place(x=400, y=10, anchor= 'ne')
 
     Pro_Cube(top_left_frame)
-    SerialApp(top_right_frame)
+    SerialApp(top_right_frame, )
 
     # #Function to switch between frames
     # def show_frame(frame):
@@ -184,6 +194,32 @@ def main(Login):
     frame72.pack(fill='both', expand= True, pady= 3, padx=3)
    
     Pro_Cube(frame61)
+    PlotterGUI(frame21)
+    PlotterGUI(frame31)
+    PlotterGUI(frame41)
+    PlotterGUI(frame51)
+    PlotterGUI(frame61)
+    PlotterGUI(frame71)
+
+    text2 = tk.Text(frame21, wrap="word", height=98)
+    text2.pack(pady=10, anchor= 'w', fill='both', expand=True)
+    read_csv(file_path, textA= text2)
+    text3 = tk.Text(frame31, wrap="word", height=98)
+    text3.pack(pady=10, anchor= 'w', fill='both', expand=True)
+    read_csv(file_path, textA= text3)
+    text4 = tk.Text(frame41, wrap="word", height=98)
+    text4.pack(pady=10, anchor= 'w', fill='both', expand=True)
+    read_csv(file_path, textA= text4)
+    text5 = tk.Text(frame51, wrap="word", height=98)
+    text5.pack(pady=10, anchor= 'w', fill='both', expand=True)
+    read_csv(file_path, textA= text5)
+    text6 = tk.Text(frame61, wrap="word", height=98)
+    text6.pack(pady=10, anchor= 'w', fill='both', expand=True)
+    read_csv(file_path, textA= text6)
+    text7 = tk.Text(frame71, wrap="word", height=98)
+    text7.pack(pady=10, anchor= 'w', fill='both', expand=True)
+    read_csv(file_path, textA= text7)
+    
 
     #BUTTONS
 
