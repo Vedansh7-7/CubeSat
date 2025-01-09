@@ -6,7 +6,15 @@ import math
 import os
 
 class SerialApp:
+<<<<<<< HEAD
     def __init__(self, frame):
+=======
+    def __init__(self, frame, port='COM3', baudrate=9600, file_path='File.csv'):
+        self.serial = serial.Serial(port, baudrate, timeout=1)
+        self.file_path = file_path
+        self.running = True
+
+>>>>>>> 46f38b0d21f44d9e8f747eea3eb984bb6e0c4935
         # Entry for COM Port
         self.com_label = ctk.CTkLabel(frame, text="COM Port:", text_color='#844A84')
         self.com_label.pack(pady=10)
@@ -25,7 +33,11 @@ class SerialApp:
         self.file_entry = ctk.CTkEntry(frame)
         self.file_entry.pack(pady=5)
 
+<<<<<<< HEAD
         # Status Label
+=======
+        # Status label
+>>>>>>> 46f38b0d21f44d9e8f747eea3eb984bb6e0c4935
         self.status_label = ctk.CTkLabel(frame, text="OFFLINE", text_color="red", font=("Helvetica", 20))
         self.status_label.pack(pady=20)
 
