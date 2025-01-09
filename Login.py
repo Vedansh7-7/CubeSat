@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from Main import main
+from PIL import Image, ImageTk
 from tkinter import messagebox
 from aise_hi import AudioApp
 
