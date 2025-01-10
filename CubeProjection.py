@@ -1,5 +1,6 @@
 import customtkinter as ctk
 import math
+from GUI_Main import SerialApp
 
 class Pro_Cube:
     def __init__(self, master):
@@ -22,7 +23,10 @@ class Pro_Cube:
         self.angle_z = 0
 
         # Start continuous rotation
-        self.rotate_cube()
+        if SerialApp.toggleRotate:
+            self.rotate_cube()
+        else:
+            self.update_cube_orientation
 
     def initialize_cube_vertices(self):
         return [
@@ -122,6 +126,10 @@ class Pro_Cube:
             self.angle_x, self.angle_y, self.angle_z = angles
             self.rotate_cube(self.angle_x * math.pi / 180, self.angle_y * math.pi / 180, self.angle_z * math.pi / 180)
             self.draw_cube()
+
+            # Schedule the next frame
+            self.master.after(50, self.rotate_cube)
+
         except Exception as e:
             print("Error updating cube orientation:", e)
 

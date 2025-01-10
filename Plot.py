@@ -132,11 +132,12 @@ class PlotterGUI:
 
     def load_csv_data(self):
         file_path = self.filepath  # Replace with your actual CSV file path
-        selected_columns = self.columns_entry.get().split(',')
+        selected_columns = self.columns_entry.split(',')
 
         try:
             with open(file_path, mode='r') as file:
-                reader = csv.DictReader(file)  # Read as dictionary to access columns by name
+                # Specify the correct delimiter here (e.g., ',' or ';' or other)
+                reader = csv.DictReader(file, delimiter=',')  # You can change ',' to another delimiter if needed
                 self.timestamps = []
                 self.data_entries = {col: [] for col in selected_columns}
 
@@ -164,6 +165,7 @@ class PlotterGUI:
         except Exception as e:
             messagebox.showerror("Error", f"An unexpected error occurred: {str(e)}")
 
+
     def plot_data(self, selected_columns):
         # Clear previous plot
         self.ax.clear()
@@ -181,14 +183,14 @@ class PlotterGUI:
         # Redraw the canvas
         self.canvas.draw()
 
-if __name__ == "__main__":
-    app = ctk.CTk()
-    app.title("CSV Data Plotter")
-    app.geometry("800x500")
+# if __name__ == "__main__":
+#     app = ctk.CTk()
+#     app.title("CSV Data Plotter")
+#     app.geometry("800x500")
 
-    main_frame = ctk.CTkFrame(app)
-    main_frame.pack(fill="both", expand=True)
+#     main_frame = ctk.CTkFrame(app)
+#     main_frame.pack(fill="both", expand=True)
 
-    PlotterGUI(main_frame)
+#     PlotterGUI(main_frame)
 
-    app.mainloop()
+#     app.mainloop()

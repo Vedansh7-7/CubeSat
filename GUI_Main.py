@@ -5,9 +5,12 @@ import serial.tools.list_ports
 import threading
 import os
 import csv
+
+
 class SerialApp:
     def __init__(self, frame, textAreas, root):
         # Save root reference for later use
+        self.rotation = True
         self.root = root
         self.text_areas = textAreas
 
@@ -44,6 +47,13 @@ class SerialApp:
         self.create_button = ctk.CTkButton(frame, text="Click Me", command=self.start_threads)
         self.create_button.grid(row=7, column=1, padx=10, pady=10, sticky="ew")
 
+    def toggleRotate(self):
+        if self.rotation:
+            self.rotation = False
+        else:
+            self.rotation = True
+
+        return self.rotation
 
     def validate_inputs(self, port, baudrate, file_path):
         # Validate COM port, baudrate, and file path
@@ -131,6 +141,7 @@ class SerialApp:
 
     def start_threads(self):
         # Start threads for reading serial data and CSV file
+        self.toggleRotate()
         thread1 = threading.Thread(target=self.read_serial, daemon=True)
         thread2 = threading.Thread(target=self.read_csv_from_file, args=(self.file_entry.get(),), daemon=True)
         
