@@ -130,7 +130,7 @@ def main(Login):
     frame1 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
     AudioApp(frame1)
     try:
-        pil_image = Image.open(r"Logo\CUBESAT.jpg")
+        pil_image = Image.open(r"Logo\CUBESAT.png")
 
         def update_image_size(event, pil_image, label):
             frame_width = event.widget.winfo_width()
