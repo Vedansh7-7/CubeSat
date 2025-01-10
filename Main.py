@@ -5,10 +5,10 @@ import customtkinter as ctk
 from PIL import Image, ImageTk
 from aise_hi import AudioApp
 from CubeProjection import Pro_Cube
-from GUI_Main import SerialApp, threadingzz
+from GUI_Main import SerialApp
 from Plot import PlotterGUI
-from FileHandling import read_csv, append_csv
-# from Ignore import App
+from FileHandling import read_csv
+
 # Set the theme and appearance mode for customtkinter
 ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
 ctk.set_default_color_theme("green")  # Default color theme
@@ -85,13 +85,15 @@ def main(Login):
     bottom_frame = ctk.CTkFrame(overview_frame, fg_color="#844A84")
     bottom_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")
 
+    bottom_textA = tk.Text(bottom_frame, height=10, width=50)
+    bottom_textA.pack(pady=10, anchor='center', fill='both', expand=True)
 
 
     # cube_frame = ctk.CTkFrame(overview_frame, width= 420, height=420)
     # cube_frame.place(x=400, y=10, anchor= 'ne')
 
     Pro_Cube(top_left_frame)
-    SerialApp(top_right_frame)
+
 
     # #Function to switch between frames
     # def show_frame(frame):
@@ -138,7 +140,7 @@ def main(Login):
             image_width, image_height = pil_image.size
 
             # Rotate the image by 90 degrees counter-clockwise
-            rotated_image = pil_image.rotate(90, expand=True)  # Hardcoded 90-degree rotation
+            rotated_image = pil_image.rotate(0, expand=True)  # Hardcoded 90-degree rotation
 
             image_width, image_height = rotated_image.size
             width_ratio = frame_width / image_width
@@ -151,7 +153,7 @@ def main(Login):
             label.configure(image=ctk_image)
 
         # Rotate the original image for initial display
-        rotated_image = pil_image.rotate(90, expand=True)
+        rotated_image = pil_image.rotate(0, expand=True)
         ctk_image = ctk.CTkImage(light_image=rotated_image, dark_image=rotated_image, size=rotated_image.size)
 
         label = ctk.CTkLabel(frame1, image=ctk_image, text="")
@@ -202,12 +204,12 @@ def main(Login):
     frame72.pack(fill='both', expand= True, pady= 3, padx=3)
    
     Pro_Cube(frame61)
-    PlotterGUI(frame21)
-    PlotterGUI(frame31)
-    PlotterGUI(frame41)
-    PlotterGUI(frame51)
-    PlotterGUI(frame61)
-    PlotterGUI(frame71)
+    PlotterGUI(frame21, file_path, ("Bx,By,Bz,B_net"))
+    PlotterGUI(frame31, file_path, ("P,T,Alt"))
+    PlotterGUI(frame41, file_path, ("GPS_lat,GPS_lon"))
+    PlotterGUI(frame51, file_path, ("Hum,Temp"))
+    PlotterGUI(frame61, file_path, ("Head"))
+    PlotterGUI(frame71, file_path, ("Filt_g_X,Filt_g_Y,Filt_g_Z,Filt_g_net"))
 
     text2 = tk.Text(frame21, wrap="word", height=98)
     text2.pack(pady=10, anchor= 'w', fill='both', expand=True)
@@ -226,16 +228,9 @@ def main(Login):
     
     text7 = tk.Text(frame71, wrap="word", height=98)
     text7.pack(pady=10, anchor= 'w', fill='both', expand=True)
-    
-    threadingzz(tar=read_csv, arg=(file_path, text_dframe))
-    # read_csv(file_path, textA= text2)
-    # read_csv(file_path, textA= text3)
-    # read_csv(file_path, textA= text4)
-    # read_csv(file_path, textA= text5)
-    # read_csv(file_path, textA= text6)
-    # read_csv(file_path, textA= text7)
-    # read_csv(file_path, textA= text_dframe)
-    
+
+    Serialobject = SerialApp(top_right_frame, [bottom_textA, text_dframe, text2, text3, text4, text5, text6, text7], root=root)
+   
    
 
     #BUTTONS
