@@ -2,9 +2,19 @@ import tkinter as tk
 from tkinter import messagebox
 import customtkinter as ctk
 import csv
-
+import queue
 
 # Function to read CSV file
+
+def read_csv_in_thread(file_path, data_queue):
+    try:
+        with open(file_path, 'r') as file:
+            data = file.read()
+        data_queue.put(data)  # Put the data into the queue
+    except Exception as e:
+        # Handle potential errors during CSV reading
+        data_queue.put(str(e))
+
 def read_csv(csv_file_path = r"File.csv", textA= tk.Text):
     try:
         textA.delete("1.0", tk.END)
@@ -36,7 +46,7 @@ def append_csv(csv_file_path = r"File.csv", textA= tk.Text):
             writer = csv.writer(csvfile)
             for line in content:
                 writer.writerow(line.split(', '))
-        messagebox.showinfo("Success", "Text appended to CSV file successfully!")
+        # messagebox.showinfo("Success", "Text appended to CSV file successfully!")
     except Exception as e:
         messagebox.showerror("Error", f"Could not append to CSV file: {e}")
 
