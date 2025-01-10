@@ -10,13 +10,34 @@ from aise_hi import AudioApp
 ctk.set_appearance_mode("dark")  # Options: "dark", "light", or "system"
 ctk.set_default_color_theme("dark-blue")  # Default color theme
 
+# File path to the Credentials.txt file
+cred_path = 'Credentials.txt'
+
+# Initialize variables to store values
+U = ""
+P = ""
+
+# Open the file and read the content
+with open(cred_path, 'r') as file:
+    for line in file:
+        # Split the line at '=' and strip extra spaces
+        key, value = line.strip().split('=')
+        key = key.strip()
+        value = value.strip()
+
+        # Assign values to the appropriate variables
+        if key == 'U':
+            U = value
+        elif key == 'P':
+            P = value
+
 # Functions
 def login():
     username = user_entry.get()
     password = user_entry1.get()
 
     # Simple hardcoded credentials for demonstration
-    if username == "a" and password == "a":
+    if username == U and password == P:
         messagebox.showinfo("Login", "Login Successful!")
         main(Login= Login)
     else:

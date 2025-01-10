@@ -1,9 +1,11 @@
 import tkinter as tk
+from threading import *
+import queue
 import customtkinter as ctk
 from PIL import Image, ImageTk
 from aise_hi import AudioApp
 from CubeProjection import Pro_Cube
-from GUI_Main import SerialApp
+from GUI_Main import SerialApp, threadingzz
 from Plot import PlotterGUI
 from FileHandling import read_csv, append_csv
 # from Ignore import App
@@ -31,6 +33,7 @@ def main(Login):
         "frame7": False
     }
 
+    q = queue.Queue()
         
     default_button_color = "transparent" # Default button colors
     selected_button_color = "#844A84"  # Color for the selected button
@@ -56,9 +59,10 @@ def main(Login):
     dataview_frame.pack(fill='both', expand=True)
     text_dframe = tk.Text(dataview_frame, wrap="word", height=98)
     text_dframe.pack(pady=10, anchor= 'w', fill='both', expand=True)
-    read_csv(file_path, textA= text_dframe)
-    append_csv(file_path, textA= text_dframe)
 
+    
+
+    # append_csv(file_path, textA= data)
 
     overview_frame = ctk.CTkFrame(otab, width=848, height=420)
     overview_frame.pack(fill='both', expand=True)
@@ -74,6 +78,9 @@ def main(Login):
 
     top_right_frame = ctk.CTkFrame(overview_frame, fg_color="#1E1E1E")
     top_right_frame.grid(row=0, column=1, sticky="nsew")
+
+    top_right_frame.grid_columnconfigure(0, weight=1)
+    top_right_frame.grid_columnconfigure(1, weight=1)
 
     bottom_frame = ctk.CTkFrame(overview_frame, fg_color="#844A84")
     bottom_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")
@@ -123,7 +130,7 @@ def main(Login):
     frame1 = ctk.CTkFrame(mframe, width=848, height=395, bg_color="black")
     AudioApp(frame1)
     try:
-        pil_image = Image.open(r"Logo\cubesatIMG.jpg")
+        pil_image = Image.open(r"Logo\CUBESAT.jpg")
 
         def update_image_size(event, pil_image, label):
             frame_width = event.widget.winfo_width()
@@ -204,23 +211,32 @@ def main(Login):
 
     text2 = tk.Text(frame21, wrap="word", height=98)
     text2.pack(pady=10, anchor= 'w', fill='both', expand=True)
-    read_csv(file_path, textA= text2)
+    
     text3 = tk.Text(frame31, wrap="word", height=98)
     text3.pack(pady=10, anchor= 'w', fill='both', expand=True)
-    read_csv(file_path, textA= text3)
+    
     text4 = tk.Text(frame41, wrap="word", height=98)
     text4.pack(pady=10, anchor= 'w', fill='both', expand=True)
-    read_csv(file_path, textA= text4)
+    
     text5 = tk.Text(frame51, wrap="word", height=98)
     text5.pack(pady=10, anchor= 'w', fill='both', expand=True)
-    read_csv(file_path, textA= text5)
+    
     text6 = tk.Text(frame61, wrap="word", height=98)
     text6.pack(pady=10, anchor= 'w', fill='both', expand=True)
-    read_csv(file_path, textA= text6)
+    
     text7 = tk.Text(frame71, wrap="word", height=98)
     text7.pack(pady=10, anchor= 'w', fill='both', expand=True)
-    read_csv(file_path, textA= text7)
     
+    threadingzz(tar=read_csv, arg=(file_path, text_dframe))
+    # read_csv(file_path, textA= text2)
+    # read_csv(file_path, textA= text3)
+    # read_csv(file_path, textA= text4)
+    # read_csv(file_path, textA= text5)
+    # read_csv(file_path, textA= text6)
+    # read_csv(file_path, textA= text7)
+    # read_csv(file_path, textA= text_dframe)
+    
+   
 
     #BUTTONS
 
