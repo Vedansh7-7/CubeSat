@@ -204,12 +204,12 @@ def main(Login):
     frame72.pack(fill='both', expand= True, pady= 3, padx=3)
    
     Pro_Cube(frame61)
-    PlotterGUI(frame21)
-    PlotterGUI(frame31)
-    PlotterGUI(frame41)
-    PlotterGUI(frame51)
-    PlotterGUI(frame61)
-    PlotterGUI(frame71)
+    PlotterGUI(frame21, file_path, ("Bx,By,Bz,B_net"))
+    PlotterGUI(frame31, file_path, ("P,T,Alt"))
+    PlotterGUI(frame41, file_path, ("GPS_lat,GPS_lon"))
+    PlotterGUI(frame51, file_path, ("Hum,Temp"))
+    PlotterGUI(frame61, file_path, ("Head"))
+    PlotterGUI(frame71, file_path, ("Filt_g_X,Filt_g_Y,Filt_g_Z,Filt_g_net"))
 
     text2 = tk.Text(frame21, wrap="word", height=98)
     text2.pack(pady=10, anchor= 'w', fill='both', expand=True)
