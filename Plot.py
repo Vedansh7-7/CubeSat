@@ -3,6 +3,7 @@ import customtkinter as ctk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import pytz
+from tkinter import messagebox
 
 tz_india = pytz.timezone('Asia/Kolkata')
 
@@ -45,12 +46,18 @@ class PlotterGUI:
         try:
             data = [float(x.strip()) for x in data_str.split(",")]
             self.data_entries.extend(data)
+
             now = datetime.now(tz_india)
             new_timestamps = [
                 (now - timedelta(milliseconds=100 * (len(data) - i - 1))).strftime("%H:%M:%S")
                 for i in range(len(data))
             ]
             self.timestamps.extend(new_timestamps)
+
+            # Limit the number of data points on the plot (to prevent performance issues)
+            if len(self.data_entries) > 100:  # Limit to 100 entries for example
+                self.data_entries = self.data_entries[-100:]
+                self.timestamps = self.timestamps[-100:]
 
             self.ax.clear()  # Clear previous plot
             self.ax.plot(self.timestamps, self.data_entries, marker="o")
@@ -62,8 +69,9 @@ class PlotterGUI:
 
             self.entry.delete(0, ctk.END)  # Clear the entry box
         except ValueError:
-            print("Invalid input. Please check input data.")
-            # Optionally show a message box to the user
+            # Show error message to user
+            messagebox.showerror("Invalid Input", "Please enter valid comma-separated numbers.")
+            self.entry.delete(0, ctk.END)  # Clear the entry box
 
 if __name__ == "__main__":
     app = ctk.CTk()
