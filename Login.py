@@ -1,9 +1,9 @@
 import customtkinter as ctk
 from Main import main
 import PIL
-from PIL import Image, ImageTk
+# from PIL import Image, ImageTk
 from tkinter import messagebox
-from aise_hi import AudioApp
+# from aise_hi import AudioApp
 
 
 # Set the theme and appearance mode for customtkinter
@@ -36,12 +36,13 @@ def login():
     username = user_entry.get()
     password = user_entry1.get()
 
-    # Simple hardcoded credentials for demonstration
     if username == U and password == P:
         messagebox.showinfo("Login", "Login Successful!")
-        main(Login= Login)
+        Login.destroy()  # Close the login window
+        main()
     else:
         messagebox.showerror("Login", "Invalid Username or Password")
+
 
 # Initialize main application window
 Login = ctk.CTk()

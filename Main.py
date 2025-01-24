@@ -16,8 +16,8 @@ ctk.set_default_color_theme("green")  # Default color theme
 file_path = r'File.csv'
 
 # Initialize main application window
-def main(Login):
-    Login.destroy()
+def main():
+    # Login.destroy()
     root = ctk.CTk()
     
     root.title("Main page")
@@ -73,7 +73,7 @@ def main(Login):
     overview_frame.grid_columnconfigure(0, weight=1)  # Left column
     overview_frame.grid_columnconfigure(1, weight=1)  # Right column
 
-    top_left_frame = ctk.CTkFrame(overview_frame)
+    top_left_frame = ctk.CTkFrame(overview_frame, bg_color='#f0f0f0', fg_color='#f0f0f0')
     top_left_frame.grid(row=0, column=0, sticky="nsew")
 
     top_right_frame = ctk.CTkFrame(overview_frame, fg_color="#1E1E1E")
@@ -185,7 +185,7 @@ def main(Login):
     frame42 = ctk.CTkFrame(frame4, width=848, height=98)
     frame51 = ctk.CTkFrame(frame5, width=848, height=296)
     frame52 = ctk.CTkFrame(frame5, width=848, height=98)
-    frame61 = ctk.CTkFrame(frame6, width=848, height=296)
+    frame61 = ctk.CTkFrame(frame6, width=848, height=296, bg_color='#f0f0f0', fg_color='#f0f0f0')
     frame62 = ctk.CTkFrame(frame6, width=848, height=98)
     frame71 = ctk.CTkFrame(frame7, width=848, height=296)
     frame72 = ctk.CTkFrame(frame7, width=848, height=98)

@@ -8,9 +8,10 @@ class Pro_Cube:
         # # Create a frame for cube rotation
         # self.frame = ctk.CTkFrame(master, width=400, height=400)
         # self.frame.pack(padx=10, pady=10)
+        self.toggleRot = SerialApp.toggleRotate
 
         # Initialize Cube Drawing
-        self.canvas = ctk.CTkCanvas(self.master, width=400, height=400, bg="white")
+        self.canvas = ctk.CTkCanvas(self.master, width=400, height=400)
         self.canvas.pack()
 
         # 3D Cube Vertices and Edges
@@ -23,7 +24,7 @@ class Pro_Cube:
         self.angle_z = 0
 
         # Start continuous rotation
-        if SerialApp.toggleRotate:
+        if self.toggleRot:
             self.rotate_cube()
         else:
             self.update_cube_orientation
@@ -116,8 +117,9 @@ class Pro_Cube:
         # Redraw the cube
         self.draw_cube()
 
-        # Schedule the next frame
-        self.master.after(50, self.rotate_cube)
+        if self.toggleRot:
+            # Schedule the next frame
+            self.master.after(50, self.rotate_cube)
 
     def update_cube_orientation(self, data):
         try:
@@ -127,8 +129,9 @@ class Pro_Cube:
             self.rotate_cube(self.angle_x * math.pi / 180, self.angle_y * math.pi / 180, self.angle_z * math.pi / 180)
             self.draw_cube()
 
-            # Schedule the next frame
-            self.master.after(50, self.rotate_cube)
+            if not self.toggleRot:
+                # Schedule the next frame
+                self.master.after(50, self.rotate_cube)
 
         except Exception as e:
             print("Error updating cube orientation:", e)
