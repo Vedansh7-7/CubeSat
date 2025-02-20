@@ -1,7 +1,7 @@
 # CubeSat
 
 ## Overview
-This project involves the design, integration, and testing of a CubeSat prototype equipped with multiple sensors for environmental and positional data acquisition. The CubeSat includes a custom-designed PCB that integrates various sensors and communicates with an external Arduino Uno for data processing and transmission.
+This project involves designing, integrating, and testing a CubeSat prototype equipped with multiple sensors for environmental and positional data acquisition. The CubeSat includes a custom-designed PCB that integrates various sensors and communicates with an external Arduino Uno for data processing and transmission.
 
 ## Features
 - **Sensor Integration:** 
@@ -10,12 +10,11 @@ This project involves the design, integration, and testing of a CubeSat prototyp
   - Humidity Sensor (DHT11)
   - GPS Module (GY-NEO6MV2)
   - Inertial Measurement Unit (IMU - GY-521)
-  - High-Precision Pressure Sensor (Hx710B)
   - RF Communication Module (RF433 - Receiver)
 - **Custom PCB:** Designed to integrate all sensors and route connections to an external Arduino Uno.
 - **Wireless Data Transmission:** Uses RF433 for communication.
 - **Power Management:** Ensures stable power delivery to all components.
-- **Graphical User Interface (GUI):** A user-friendly interface for real-time data visualization and monitoring.
+- **Graphical User Interface (GUI):** A user-friendly real-time data visualization and monitoring interface.
 
 ## System Architecture
 The CubeSat consists of:
@@ -34,7 +33,6 @@ The CubeSat consists of:
 | Humidity Sensor | DHT11 |
 | GPS Module | GY-NEO6MV2 |
 | IMU | GY-521 |
-| High-Precision Sensor | Hx710B |
 | RF Module | RF433 Receiver |
 | Custom PCB | Designed for sensor integration |
 
@@ -72,7 +70,7 @@ The CubeSat consists of:
 - **GUI Enhancements:** Adding advanced visualization features and real-time analytics.
 
 ## Conclusion
-This CubeSat prototype demonstrates a successful integration of multiple sensors, a well-designed PCB, and a functional data acquisition system. The project serves as a foundation for further advancements in small satellite technology and environmental data monitoring.
+This CubeSat prototype successfully integrates multiple sensors, a well-designed PCB, and a functional data acquisition system. The project is a foundation for further advancements in small satellite technology and environmental data monitoring.
 
 
 
