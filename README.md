@@ -36,6 +36,9 @@ The CubeSat consists of:
 | RF Module | RF433 Receiver |
 | Custom PCB | Designed for sensor integration |
 
+## Design & Structural Analysis
+The CubeSat structure was designed with an emphasis on modularity and accessibility, featuring a 3D-printed frame with open sides for easy sensor inspection and debugging. Finite Element Analysis (FEA) was performed using ANSYS to evaluate structural integrity under launch-like conditions, ensuring that the CubeSat could withstand vibrations and mechanical stresses. The layout was optimized for minimal weight while maintaining robustness, laying the groundwork for future space-qualified designs.
+
 ## PCB Design
 - Designed to connect all sensors while keeping the Arduino Uno external.
 - Ensures proper routing and signal integrity.
