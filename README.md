@@ -78,7 +78,7 @@ The CubeSat structure was designed with an emphasis on modularity and accessibil
 
 ![3a626917-b77e-4af9-b07b-a473a621790c](https://github.com/user-attachments/assets/975991e4-fac4-4fe6-b609-a2f26e9ba26b)
 
-![Uploading WhatsApp Image 2025-07-05 at 5.46.59 PM.jpeg…]()
+![WhatsApp Image 2025-07-05 at 5 46 59 PM](https://github.com/user-attachments/assets/44f23e1b-f7ba-46c4-9648-a15ac4c9a3d1)
 
 ## Conclusion
 This CubeSat prototype successfully integrates multiple sensors, a well-designed PCB, and a functional data acquisition system. The project is a foundation for further advancements in small satellite technology and environmental data monitoring.
