@@ -72,6 +72,14 @@ The CubeSat structure was designed with an emphasis on modularity and accessibil
 - **Enclosure & Deployment Testing:** Testing under environmental conditions similar to space missions.
 - **GUI Enhancements:** Adding advanced visualization features and real-time analytics.
 
+## Images
+
+![aa92c437-c04f-4863-9463-d0a5509d6f2c](https://github.com/user-attachments/assets/bd93c1db-17b8-494b-8385-38fd62592d15)
+
+![3a626917-b77e-4af9-b07b-a473a621790c](https://github.com/user-attachments/assets/975991e4-fac4-4fe6-b609-a2f26e9ba26b)
+
+
+
 ## Conclusion
 This CubeSat prototype successfully integrates multiple sensors, a well-designed PCB, and a functional data acquisition system. The project is a foundation for further advancements in small satellite technology and environmental data monitoring.
 
